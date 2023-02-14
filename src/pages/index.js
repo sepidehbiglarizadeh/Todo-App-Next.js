@@ -1,3 +1,4 @@
+import TodoForm from "@/components/TodoForm";
 import Head from "next/head";
 
 export default function Home() {
@@ -12,8 +13,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
-      <main className=" min-h-screen flex flex-col justify-between">
-        <div>This is HoemPage</div>
+      <main className="px-4 py-6">
+        <TodoForm/>
       </main>
     </>
   );

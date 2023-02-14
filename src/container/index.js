@@ -1,9 +1,10 @@
 import Header from "./Header";
 
-const Layout = () => {
+const Layout = ({children}) => {
   return ( 
-    <div className="min-h-screen main-background">
+    <div className="min-h-screen main-background bg-slate-50">
       <Header/>
+      {children}
     </div>
    );
 }
