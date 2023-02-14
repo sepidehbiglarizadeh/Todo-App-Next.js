@@ -12,8 +12,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <h1>This is HomePage</h1>
+      <main className=" min-h-screen flex flex-col justify-between">
+        <div>This is HoemPage</div>
       </main>
     </>
   );
