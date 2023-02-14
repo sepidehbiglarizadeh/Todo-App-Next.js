@@ -4,13 +4,13 @@
 
 @layer utilities{
   .header-background{
-    background-image: url("../../public/shape-1.png");
+    background-image: url("../../public/images/shape-1.png");
     background-repeat: no-repeat;
     background-size: 10%;
     background-position: left top;
   }
   .main-background{
-    background-image: url("../../public/shape-2.png");
+    background-image: url("../../public/images/shape-2.png");
     background-repeat: no-repeat;
     background-size: 40%;
     background-position: right bottom;
