@@ -9,9 +9,16 @@ import { useState } from "react";
 export default function Home({ todos }) {
   const [todosData, setTodosData] = useState(todos);
 
-  const addTodoHandler = (formData) => {
+  const addTodoHandler = async (formData) => {
     axios
       .post("/api/todos", { formData })
+      .then(({ data }) => setTodosData(data.todos))
+      .catch((err) => console.log(err));
+  };
+
+  const deleteTodoHandler = async (id) => {
+    axios
+      .delete(`/api/todos/${id}`)
       .then(({ data }) => setTodosData(data.todos))
       .catch((err) => console.log(err));
   };
@@ -29,7 +36,7 @@ export default function Home({ todos }) {
       </Head>
       <main className="px-4 py-6 md:flex md:justify-center md:items-start md:gap-x-4">
         <TodoForm onAdd={addTodoHandler} />
-        <TodoList todos={todosData} />
+        <TodoList todos={todosData} onDelete={deleteTodoHandler} />
       </main>
     </>
   );

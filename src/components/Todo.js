@@ -1,7 +1,7 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-const Todo = ({ todo }) => {
+const Todo = ({ todo ,onDelete}) => {
   return (
     <div className="flex justify-between h-28 bg-white rounded-tl-[50px] rounded-br-[50px] overflow-hidden mb-6">
       <div className="p-3 md:p-4 w-full flex justify-between items-center">
@@ -18,7 +18,7 @@ const Todo = ({ todo }) => {
         </div>
         <div className="flex flex-col justify-between h-full">
           <button className="text-sm">Edit</button>
-          <button>
+          <button onClick={()=>onDelete(todo._id)}>
             <TrashIcon className="w-5 h-5 text-rose-400" />
           </button>
         </div>
