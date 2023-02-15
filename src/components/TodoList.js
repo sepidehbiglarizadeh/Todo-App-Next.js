@@ -1,9 +1,15 @@
 import Todo from "./Todo";
 
-const TodoList = () => {
+const TodoList = ({ todos }) => {
   return (
     <section className="max-w-md w-full">
-      <Todo/>
+      {todos.length ? (
+        todos.map((todo) => {
+          return <Todo todo={todo} />;
+        })
+      ) : (
+        <p className="text-center font-bold">There Is No Task...!</p>
+      )}
     </section>
   );
 };

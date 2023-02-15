@@ -1,8 +1,13 @@
 import TodoForm from "@/components/TodoForm";
 import TodoList from "@/components/TodoList";
+import todo from "@/server/models/todo";
+import dbconnect from "@/server/utils/dbConnect";
 import Head from "next/head";
+import { useState } from "react";
 
-export default function Home() {
+export default function Home({ todos }) {
+  const [todosData, setTodosData] = useState(todos);
+
   return (
     <>
       <Head>
@@ -16,8 +21,18 @@ export default function Home() {
       </Head>
       <main className="px-4 py-6 md:flex md:justify-center md:items-start md:gap-x-4">
         <TodoForm />
-        <TodoList />
+        <TodoList todos={todosData} />
       </main>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  dbconnect();
+  const todos = await todo.find({});
+  return {
+    props: {
+      todos: JSON.parse(JSON.stringify(todos)),
+    },
+  };
 }
