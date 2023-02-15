@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TodoForm = () => {
+const TodoForm = ({ onAdd }) => {
   const [isShow, setIsShow] = useState(false);
   const [formData, setFormData] = useState({ title: "", description: "" });
 
@@ -10,6 +10,7 @@ const TodoForm = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    onAdd(formData);
     setFormData({ title: "", description: "" });
   };
 
@@ -27,7 +28,10 @@ const TodoForm = () => {
   }
 
   return (
-    <form className="w-full bg-white max-w-md rounded-md shadow-md py-4" onSubmit={submitHandler}>
+    <form
+      className="w-full bg-white max-w-md rounded-md shadow-md py-4"
+      onSubmit={submitHandler}
+    >
       <div className="px-4 font-bold text-lg flex items-center gap-x-1 mb-4">
         <span className="border-4 border-rose-200 w-3 h-3 rounded-full inline-block"></span>
         <h2>New Task</h2>

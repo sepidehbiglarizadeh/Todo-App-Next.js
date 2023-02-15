@@ -1,13 +1,13 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 
-const Todo = ({todo}) => {
+const Todo = ({ todo }) => {
   return (
-    <div className="flex justify-between h-28 bg-white rounded-tl-[50px] rounded-br-[50px] overflow-hidden">
+    <div className="flex justify-between h-28 bg-white rounded-tl-[50px] rounded-br-[50px] overflow-hidden mb-6">
       <div className="p-3 md:p-4 w-full flex justify-between items-center">
         <div className="flex gap-x-6 items-center">
           <span className="border-4 border-rose-200 w-4 h-4 rounded-full inline-block"></span>
           <div>
-            <span className="block text-xs mb-1">03:00 PM</span>
+            <span className="block text-xs mb-1">{new Date(todo.createdAt).toDateString()}</span>
             <span className="block font-bold">{todo.title}</span>
           </div>
         </div>

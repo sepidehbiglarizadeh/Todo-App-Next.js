@@ -10,10 +10,10 @@ export default async function handler(req, res) {
     await todo.create({
       title: formData.title,
       description: formData.description,
+      createdAt: new Date(),
     });
     const todos = await todo.find({});
     return res.status(201).json({ message: "new todo added", todos });
-
   } else if (method === "GET") {
     const todos = await todo.find({});
     return res.status(200).json({ todos });

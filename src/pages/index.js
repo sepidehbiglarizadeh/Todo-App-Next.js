@@ -2,12 +2,19 @@ import TodoForm from "@/components/TodoForm";
 import TodoList from "@/components/TodoList";
 import todo from "@/server/models/todo";
 import dbconnect from "@/server/utils/dbConnect";
+import axios from "axios";
 import Head from "next/head";
 import { useState } from "react";
 
 export default function Home({ todos }) {
   const [todosData, setTodosData] = useState(todos);
 
+  const addTodoHandler = (formData) => {
+    axios
+      .post("/api/todos", { formData })
+      .then(({ data }) => setTodosData(data.todos))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
@@ -21,7 +28,7 @@ export default function Home({ todos }) {
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
       <main className="px-4 py-6 md:flex md:justify-center md:items-start md:gap-x-4">
-        <TodoForm />
+        <TodoForm onAdd={addTodoHandler} />
         <TodoList todos={todosData} />
       </main>
     </>

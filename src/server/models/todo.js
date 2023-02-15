@@ -14,6 +14,9 @@ const todoSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  createdAt: {
+    type: Date,
+  },
 });
 
 export default mongoose.models.Todo || mongoose.model("Todo", todoSchema);
