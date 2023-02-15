@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 const TodoPage = ({ todo }) => {
+  const [checked, setChecked] = useState(todo.isCompleted)
   const router = useRouter();
   const [formData, setFormData] = useState({
     title: todo.title,
@@ -17,7 +18,7 @@ const TodoPage = ({ todo }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     axios
-      .put(`/api/todos/${router.query.todoId}`, { todo: formData })
+      .put(`/api/todos/${router.query.todoId}`, { todo: { ...formData, isCompleted: checked } })
       .then((res) => router.push("/"))
       .catch((err) => console.log(err));
   };
@@ -56,6 +57,18 @@ const TodoPage = ({ todo }) => {
           onChange={changeHandler}
           className="outline-none border-b border-rose-200 p-2 rounded-md focus:border-2 w-full"
         ></textarea>
+      </div>
+      <div className="px-8 mb-8">
+        <input
+          className="rounded mr-2"
+          type="checkbox"
+          name="checked"
+          id="checked"
+          checked={checked}
+          onChange={() => setChecked(!checked)}
+        />
+
+        <label htmlFor="checked">complete todo</label>
       </div>
       <div className="px-8 md:flex items-center gap-x-4">
         <button

@@ -23,6 +23,15 @@ export default function Home({ todos }) {
       .catch((err) => console.log(err));
   };
 
+  const completeHandler = async (id) => {
+    axios
+      .put(`/api/todos/complete/${id}`)
+      .then(({data}) => {
+        setTodosData(data.todos);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <Head>
@@ -36,7 +45,11 @@ export default function Home({ todos }) {
       </Head>
       <main className="px-4 py-6 md:flex md:justify-center md:items-start md:gap-x-4">
         <TodoForm onAdd={addTodoHandler} />
-        <TodoList todos={todosData} onDelete={deleteTodoHandler} />
+        <TodoList
+          todos={todosData}
+          onDelete={deleteTodoHandler}
+          onComplete={completeHandler}
+        />
       </main>
     </>
   );
