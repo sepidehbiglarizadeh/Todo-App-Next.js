@@ -1,4 +1,5 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 const Todo = ({ todo }) => {
   return (
@@ -6,10 +7,14 @@ const Todo = ({ todo }) => {
       <div className="p-3 md:p-4 w-full flex justify-between items-center">
         <div className="flex gap-x-6 items-center">
           <span className="border-4 border-rose-200 w-4 h-4 rounded-full inline-block"></span>
-          <div>
-            <span className="block text-xs mb-1">{new Date(todo.createdAt).toDateString()}</span>
-            <span className="block font-bold">{todo.title}</span>
-          </div>
+          <Link href={`/todos/${todo._id}`}>
+            <div>
+              <span className="block text-xs mb-1">
+                {new Date(todo.createdAt).toDateString()}
+              </span>
+              <span className="block font-bold">{todo.title}</span>
+            </div>
+          </Link>
         </div>
         <div className="flex flex-col justify-between h-full">
           <button className="text-sm">Edit</button>
