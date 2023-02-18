@@ -1,3 +1,4 @@
+import dbconnect from "@/server/utils/dbConnect";
 import { getOneTodo } from "../api/todos/[todoId]";
 
 const TodoPage = ({todo}) => {
@@ -17,6 +18,7 @@ const TodoPage = ({todo}) => {
 export default TodoPage;
 
 export async function getServerSideProps(context) {
+  dbconnect();
   const { query } = context;
   const todo = await getOneTodo(query);
   return {
