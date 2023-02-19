@@ -3,11 +3,15 @@ import TodoList from "@/components/TodoList";
 import todo from "@/server/models/todo";
 import dbconnect from "@/server/utils/dbConnect";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
 import { useState } from "react";
 
 export default function Home({ todos }) {
   const [todosData, setTodosData] = useState(todos);
+  const { data: session, status } = useSession();
+
+  console.log({ session, status });
 
   const addTodoHandler = async (formData) => {
     axios
@@ -26,7 +30,7 @@ export default function Home({ todos }) {
   const completeHandler = async (id) => {
     axios
       .put(`/api/todos/complete/${id}`)
-      .then(({data}) => {
+      .then(({ data }) => {
         setTodosData(data.todos);
       })
       .catch((err) => console.log(err));
