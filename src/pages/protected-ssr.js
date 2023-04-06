@@ -2,7 +2,6 @@ import { getSession, useSession } from "next-auth/react";
 
 const ProtectedSSR = () => {
   const { data: session, status } = useSession();
-  console.log(session);
 
   return (
     <h1 className="text-center mt-6">
@@ -20,7 +19,7 @@ export async function getServerSideProps(context) {
     return {
       redirect: {
         destination:
-          "/api/auth/signin?callbackUrl=http://localhost:3000/protected-ssr",
+          "/api/auth/signin?callbackUrl=https://todo-app-next-js-spdb-4rvtrcqlv-sepidehbiglarizadeh.vercel.app/protected-ssr",
         permanent: false,
       },
     };

@@ -11,8 +11,6 @@ export default function Home({ todos }) {
   const [todosData, setTodosData] = useState(todos);
   const { data: session, status } = useSession();
 
-  console.log({ session, status });
-
   const addTodoHandler = async (formData) => {
     axios
       .post("/api/todos", { formData })
